@@ -1,132 +1,60 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 小说章节
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("book_chapter")
-public class BookChapter implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "book_chapter")
+public class BookChapter {
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 小说ID
+     */
+    @TableField(value = "book_id")
+    private Long bookId;
 
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 章节号
+     */
+    @TableField(value = "chapter_num")
+    private Short chapterNum;
 
-        /**
-         * 小说ID
-         */
-        private Long bookId;
+    /**
+     * 章节名
+     */
+    @TableField(value = "chapter_name")
+    private String chapterName;
 
-        /**
-         * 章节号
-         */
-        private Short chapterNum;
+    /**
+     * 章节字数
+     */
+    @TableField(value = "word_count")
+    private Integer wordCount;
 
-        /**
-         * 章节名
-         */
-        private String chapterName;
+    /**
+     * 是否收费;1-收费 0-免费
+     */
+    @TableField(value = "is_vip")
+    private Byte isVip;
 
-        /**
-         * 章节字数
-         */
-        private Integer wordCount;
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 是否收费;1-收费 0-免费
-         */
-        private Byte isVip;
-
-        private LocalDateTime createTime;
-
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public Long getBookId() {
-            return bookId;
-            }
-
-        public void setBookId(Long bookId) {
-            this.bookId = bookId;
-            }
-
-    public Short getChapterNum() {
-            return chapterNum;
-            }
-
-        public void setChapterNum(Short chapterNum) {
-            this.chapterNum = chapterNum;
-            }
-
-    public String getChapterName() {
-            return chapterName;
-            }
-
-        public void setChapterName(String chapterName) {
-            this.chapterName = chapterName;
-            }
-
-    public Integer getWordCount() {
-            return wordCount;
-            }
-
-        public void setWordCount(Integer wordCount) {
-            this.wordCount = wordCount;
-            }
-
-    public Byte getIsVip() {
-            return isVip;
-            }
-
-        public void setIsVip(Byte isVip) {
-            this.isVip = isVip;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "BookChapter{" +
-                "id=" + id +
-                ", bookId=" + bookId +
-                ", chapterNum=" + chapterNum +
-                ", chapterName=" + chapterName +
-                ", wordCount=" + wordCount +
-                ", isVip=" + isVip +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    @TableField(value = "update_time")
+    private Date updateTime;
+}

@@ -1,113 +1,57 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 用户阅读历史
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("user_read_history")
-public class UserReadHistory implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "user_read_history")
+public class UserReadHistory {
+    /**
+     * 主键
+     */
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 用户ID
+     */
+    @TableField(value = "user_id")
+    private Long userId;
 
-        /**
-         * 主键
-         */
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 小说ID
+     */
+    @TableField(value = "book_id")
+    private Long bookId;
 
-        /**
-         * 用户ID
-         */
-        private Long userId;
+    /**
+     * 上一次阅读的章节内容表ID
+     */
+    @TableField(value = "pre_content_id")
+    private Long preContentId;
 
-        /**
-         * 小说ID
-         */
-        private Long bookId;
+    /**
+     * 创建时间;
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 上一次阅读的章节内容表ID
-         */
-        private Long preContentId;
-
-        /**
-         * 创建时间;
-         */
-        private LocalDateTime createTime;
-
-        /**
-         * 更新时间;
-         */
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public Long getUserId() {
-            return userId;
-            }
-
-        public void setUserId(Long userId) {
-            this.userId = userId;
-            }
-
-    public Long getBookId() {
-            return bookId;
-            }
-
-        public void setBookId(Long bookId) {
-            this.bookId = bookId;
-            }
-
-    public Long getPreContentId() {
-            return preContentId;
-            }
-
-        public void setPreContentId(Long preContentId) {
-            this.preContentId = preContentId;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "UserReadHistory{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", bookId=" + bookId +
-                ", preContentId=" + preContentId +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    /**
+     * 更新时间;
+     */
+    @TableField(value = "update_time")
+    private Date updateTime;
+}

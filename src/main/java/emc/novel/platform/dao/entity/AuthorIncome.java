@@ -1,184 +1,87 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 稿费收入统计
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("author_income")
-public class AuthorIncome implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "author_income")
+public class AuthorIncome {
+    /**
+     * 主键
+     */
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 作家ID
+     */
+    @TableField(value = "author_id")
+    private Long authorId;
 
-        /**
-         * 主键
-         */
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 小说ID
+     */
+    @TableField(value = "book_id")
+    private Long bookId;
 
-        /**
-         * 作家ID
-         */
-        private Long authorId;
+    /**
+     * 收入月份
+     */
+    @TableField(value = "income_month")
+    private Date incomeMonth;
 
-        /**
-         * 小说ID
-         */
-        private Long bookId;
+    /**
+     * 税前收入;单位：分
+     */
+    @TableField(value = "pre_tax_income")
+    private Integer preTaxIncome;
 
-        /**
-         * 收入月份
-         */
-        private LocalDate incomeMonth;
+    /**
+     * 税后收入;单位：分
+     */
+    @TableField(value = "after_tax_income")
+    private Integer afterTaxIncome;
 
-        /**
-         * 税前收入;单位：分
-         */
-        private Integer preTaxIncome;
+    /**
+     * 支付状态;0-待支付 1-已支付
+     */
+    @TableField(value = "pay_status")
+    private Byte payStatus;
 
-        /**
-         * 税后收入;单位：分
-         */
-        private Integer afterTaxIncome;
+    /**
+     * 稿费确认状态;0-待确认 1-已确认
+     */
+    @TableField(value = "confirm_status")
+    private Byte confirmStatus;
 
-        /**
-         * 支付状态;0-待支付 1-已支付
-         */
-        private Byte payStatus;
+    /**
+     * 详情
+     */
+    @TableField(value = "detail")
+    private String detail;
 
-        /**
-         * 稿费确认状态;0-待确认 1-已确认
-         */
-        private Byte confirmStatus;
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 详情
-         */
-        private String detail;
-
-        /**
-         * 创建时间
-         */
-        private LocalDateTime createTime;
-
-        /**
-         * 更新时间
-         */
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public Long getAuthorId() {
-            return authorId;
-            }
-
-        public void setAuthorId(Long authorId) {
-            this.authorId = authorId;
-            }
-
-    public Long getBookId() {
-            return bookId;
-            }
-
-        public void setBookId(Long bookId) {
-            this.bookId = bookId;
-            }
-
-    public LocalDate getIncomeMonth() {
-            return incomeMonth;
-            }
-
-        public void setIncomeMonth(LocalDate incomeMonth) {
-            this.incomeMonth = incomeMonth;
-            }
-
-    public Integer getPreTaxIncome() {
-            return preTaxIncome;
-            }
-
-        public void setPreTaxIncome(Integer preTaxIncome) {
-            this.preTaxIncome = preTaxIncome;
-            }
-
-    public Integer getAfterTaxIncome() {
-            return afterTaxIncome;
-            }
-
-        public void setAfterTaxIncome(Integer afterTaxIncome) {
-            this.afterTaxIncome = afterTaxIncome;
-            }
-
-    public Byte getPayStatus() {
-            return payStatus;
-            }
-
-        public void setPayStatus(Byte payStatus) {
-            this.payStatus = payStatus;
-            }
-
-    public Byte getConfirmStatus() {
-            return confirmStatus;
-            }
-
-        public void setConfirmStatus(Byte confirmStatus) {
-            this.confirmStatus = confirmStatus;
-            }
-
-    public String getDetail() {
-            return detail;
-            }
-
-        public void setDetail(String detail) {
-            this.detail = detail;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "AuthorIncome{" +
-                "id=" + id +
-                ", authorId=" + authorId +
-                ", bookId=" + bookId +
-                ", incomeMonth=" + incomeMonth +
-                ", preTaxIncome=" + preTaxIncome +
-                ", afterTaxIncome=" + afterTaxIncome +
-                ", payStatus=" + payStatus +
-                ", confirmStatus=" + confirmStatus +
-                ", detail=" + detail +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time")
+    private Date updateTime;
+}

@@ -1,16 +1,9 @@
 package emc.novel.platform.dao.mapper;
 
-import emc.novel.platform.dao.entity.Test;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import emc.novel.platform.dao.entity.Test;
+import org.apache.ibatis.annotations.Mapper;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
- */
+@Mapper
 public interface TestMapper extends BaseMapper<Test> {
-
-        }
+}

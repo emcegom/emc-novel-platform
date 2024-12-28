@@ -1,110 +1,54 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 小说推荐
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("home_book")
-public class HomeBook implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "home_book")
+public class HomeBook {
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 推荐类型;0-轮播图 1-顶部栏 2-本周强推 3-热门推荐 4-精品推荐
+     */
+    @TableField(value = "`type`")
+    private Byte type;
 
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 推荐排序
+     */
+    @TableField(value = "sort")
+    private Byte sort;
 
-        /**
-         * 推荐类型;0-轮播图 1-顶部栏 2-本周强推 3-热门推荐 4-精品推荐
-         */
-        private Byte type;
+    /**
+     * 推荐小说ID
+     */
+    @TableField(value = "book_id")
+    private Long bookId;
 
-        /**
-         * 推荐排序
-         */
-        private Byte sort;
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 推荐小说ID
-         */
-        private Long bookId;
-
-        /**
-         * 创建时间
-         */
-        private LocalDateTime createTime;
-
-        /**
-         * 更新时间
-         */
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public Byte getType() {
-            return type;
-            }
-
-        public void setType(Byte type) {
-            this.type = type;
-            }
-
-    public Byte getSort() {
-            return sort;
-            }
-
-        public void setSort(Byte sort) {
-            this.sort = sort;
-            }
-
-    public Long getBookId() {
-            return bookId;
-            }
-
-        public void setBookId(Long bookId) {
-            this.bookId = bookId;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "HomeBook{" +
-                "id=" + id +
-                ", type=" + type +
-                ", sort=" + sort +
-                ", bookId=" + bookId +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time")
+    private Date updateTime;
+}

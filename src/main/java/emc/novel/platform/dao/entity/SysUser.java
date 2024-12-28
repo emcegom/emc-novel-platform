@@ -1,180 +1,84 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 系统用户
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("sys_user")
-public class SysUser implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "sys_user")
+public class SysUser {
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 用户名
+     */
+    @TableField(value = "username")
+    private String username;
 
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 密码
+     */
+    @TableField(value = "`password`")
+    private String password;
 
-        /**
-         * 用户名
-         */
-        private String username;
+    /**
+     * 真实姓名
+     */
+    @TableField(value = "`name`")
+    private String name;
 
-        /**
-         * 密码
-         */
-        private String password;
+    /**
+     * 性别;0-男 1-女
+     */
+    @TableField(value = "sex")
+    private Byte sex;
 
-        /**
-         * 真实姓名
-         */
-        private String name;
+    /**
+     * 出身日期
+     */
+    @TableField(value = "birth")
+    private Date birth;
 
-        /**
-         * 性别;0-男 1-女
-         */
-        private Byte sex;
+    /**
+     * 邮箱
+     */
+    @TableField(value = "email")
+    private String email;
 
-        /**
-         * 出身日期
-         */
-        private LocalDateTime birth;
+    /**
+     * 手机号
+     */
+    @TableField(value = "mobile")
+    private String mobile;
 
-        /**
-         * 邮箱
-         */
-        private String email;
+    /**
+     * 状态;0-禁用 1-正常
+     */
+    @TableField(value = "`status`")
+    private Byte status;
 
-        /**
-         * 手机号
-         */
-        private String mobile;
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 状态;0-禁用 1-正常
-         */
-        private Byte status;
-
-        /**
-         * 创建时间
-         */
-        private LocalDateTime createTime;
-
-        /**
-         * 更新时间
-         */
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public String getUsername() {
-            return username;
-            }
-
-        public void setUsername(String username) {
-            this.username = username;
-            }
-
-    public String getPassword() {
-            return password;
-            }
-
-        public void setPassword(String password) {
-            this.password = password;
-            }
-
-    public String getName() {
-            return name;
-            }
-
-        public void setName(String name) {
-            this.name = name;
-            }
-
-    public Byte getSex() {
-            return sex;
-            }
-
-        public void setSex(Byte sex) {
-            this.sex = sex;
-            }
-
-    public LocalDateTime getBirth() {
-            return birth;
-            }
-
-        public void setBirth(LocalDateTime birth) {
-            this.birth = birth;
-            }
-
-    public String getEmail() {
-            return email;
-            }
-
-        public void setEmail(String email) {
-            this.email = email;
-            }
-
-    public String getMobile() {
-            return mobile;
-            }
-
-        public void setMobile(String mobile) {
-            this.mobile = mobile;
-            }
-
-    public Byte getStatus() {
-            return status;
-            }
-
-        public void setStatus(Byte status) {
-            this.status = status;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "SysUser{" +
-                "id=" + id +
-                ", username=" + username +
-                ", password=" + password +
-                ", name=" + name +
-                ", sex=" + sex +
-                ", birth=" + birth +
-                ", email=" + email +
-                ", mobile=" + mobile +
-                ", status=" + status +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time")
+    private Date updateTime;
+}

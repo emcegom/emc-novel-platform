@@ -1,127 +1,63 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 新闻信息
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("news_info")
-public class NewsInfo implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "news_info")
+public class NewsInfo {
+    /**
+     * 主键
+     */
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 类别ID
+     */
+    @TableField(value = "category_id")
+    private Long categoryId;
 
-        /**
-         * 主键
-         */
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 类别名
+     */
+    @TableField(value = "category_name")
+    private String categoryName;
 
-        /**
-         * 类别ID
-         */
-        private Long categoryId;
+    /**
+     * 新闻来源
+     */
+    @TableField(value = "source_name")
+    private String sourceName;
 
-        /**
-         * 类别名
-         */
-        private String categoryName;
+    /**
+     * 新闻标题
+     */
+    @TableField(value = "title")
+    private String title;
 
-        /**
-         * 新闻来源
-         */
-        private String sourceName;
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 新闻标题
-         */
-        private String title;
-
-        /**
-         * 创建时间
-         */
-        private LocalDateTime createTime;
-
-        /**
-         * 更新时间
-         */
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public Long getCategoryId() {
-            return categoryId;
-            }
-
-        public void setCategoryId(Long categoryId) {
-            this.categoryId = categoryId;
-            }
-
-    public String getCategoryName() {
-            return categoryName;
-            }
-
-        public void setCategoryName(String categoryName) {
-            this.categoryName = categoryName;
-            }
-
-    public String getSourceName() {
-            return sourceName;
-            }
-
-        public void setSourceName(String sourceName) {
-            this.sourceName = sourceName;
-            }
-
-    public String getTitle() {
-            return title;
-            }
-
-        public void setTitle(String title) {
-            this.title = title;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "NewsInfo{" +
-                "id=" + id +
-                ", categoryId=" + categoryId +
-                ", categoryName=" + categoryName +
-                ", sourceName=" + sourceName +
-                ", title=" + title +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time")
+    private Date updateTime;
+}

@@ -1,110 +1,54 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 角色
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("sys_role")
-public class SysRole implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "sys_role")
+public class SysRole {
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 角色名称
+     */
+    @TableField(value = "role_name")
+    private String roleName;
 
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 角色标识
+     */
+    @TableField(value = "role_sign")
+    private String roleSign;
 
-        /**
-         * 角色名称
-         */
-        private String roleName;
+    /**
+     * 备注
+     */
+    @TableField(value = "remark")
+    private String remark;
 
-        /**
-         * 角色标识
-         */
-        private String roleSign;
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 备注
-         */
-        private String remark;
-
-        /**
-         * 创建时间
-         */
-        private LocalDateTime createTime;
-
-        /**
-         * 更新时间
-         */
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public String getRoleName() {
-            return roleName;
-            }
-
-        public void setRoleName(String roleName) {
-            this.roleName = roleName;
-            }
-
-    public String getRoleSign() {
-            return roleSign;
-            }
-
-        public void setRoleSign(String roleSign) {
-            this.roleSign = roleSign;
-            }
-
-    public String getRemark() {
-            return remark;
-            }
-
-        public void setRemark(String remark) {
-            this.remark = remark;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "SysRole{" +
-                "id=" + id +
-                ", roleName=" + roleName +
-                ", roleSign=" + roleSign +
-                ", remark=" + remark +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time")
+    private Date updateTime;
+}

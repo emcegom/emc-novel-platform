@@ -1,96 +1,48 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 角色与菜单对应关系
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("sys_role_menu")
-public class SysRoleMenu implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "sys_role_menu")
+public class SysRoleMenu {
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 角色ID
+     */
+    @TableField(value = "role_id")
+    private Long roleId;
 
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 菜单ID
+     */
+    @TableField(value = "menu_id")
+    private Long menuId;
 
-        /**
-         * 角色ID
-         */
-        private Long roleId;
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 菜单ID
-         */
-        private Long menuId;
-
-        /**
-         * 创建时间
-         */
-        private LocalDateTime createTime;
-
-        /**
-         * 更新时间
-         */
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public Long getRoleId() {
-            return roleId;
-            }
-
-        public void setRoleId(Long roleId) {
-            this.roleId = roleId;
-            }
-
-    public Long getMenuId() {
-            return menuId;
-            }
-
-        public void setMenuId(Long menuId) {
-            this.menuId = menuId;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "SysRoleMenu{" +
-                "id=" + id +
-                ", roleId=" + roleId +
-                ", menuId=" + menuId +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time")
+    private Date updateTime;
+}

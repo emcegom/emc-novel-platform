@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="emc.novel.platform.dao.mapper.TestMapper">
-
+  <resultMap id="BaseResultMap" type="emc.novel.platform.dao.entity.Test">
+    <!--@mbg.generated-->
+    <!--@Table test-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="test" jdbcType="BOOLEAN" property="test" />
+    <result column="test2" jdbcType="TINYINT" property="test2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, test, test2
+  </sql>
 </mapper>

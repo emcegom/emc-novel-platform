@@ -1,56 +1,26 @@
 package emc.novel.platform.dao.entity;
 
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
- */
-public class Test implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "test")
+public class Test {
+    @TableId(value = "id", type = IdType.INPUT)
+    private Integer id;
 
-private static final long serialVersionUID = 1L;
+    @TableField(value = "test")
+    private Boolean test;
 
-                        private Integer id;
-
-        private Byte test;
-
-        private Byte test2;
-
-
-    public Integer getId() {
-            return id;
-            }
-
-        public void setId(Integer id) {
-            this.id = id;
-            }
-
-    public Byte getTest() {
-            return test;
-            }
-
-        public void setTest(Byte test) {
-            this.test = test;
-            }
-
-    public Byte getTest2() {
-            return test2;
-            }
-
-        public void setTest2(Byte test2) {
-            this.test2 = test2;
-            }
-    
-@Override
-public String toString() {
-        return "Test{" +
-                "id=" + id +
-                ", test=" + test +
-                ", test2=" + test2 +
-        "}";
-        }
-        }
+    @TableField(value = "test2")
+    private Byte test2;
+}

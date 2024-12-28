@@ -1,16 +1,9 @@
 package emc.novel.platform.dao.mapper;
 
-import emc.novel.platform.dao.entity.PayAlipay;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import emc.novel.platform.dao.entity.PayAlipay;
+import org.apache.ibatis.annotations.Mapper;
 
-/**
- * <p>
- * 支付宝支付 Mapper 接口
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
- */
+@Mapper
 public interface PayAlipayMapper extends BaseMapper<PayAlipay> {
-
-        }
+}

@@ -1,152 +1,72 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 系统日志
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("sys_log")
-public class SysLog implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "sys_log")
+public class SysLog {
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 用户id
+     */
+    @TableField(value = "user_id")
+    private Long userId;
 
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 用户名
+     */
+    @TableField(value = "username")
+    private String username;
 
-        /**
-         * 用户id
-         */
-        private Long userId;
+    /**
+     * 用户操作
+     */
+    @TableField(value = "`operation`")
+    private String operation;
 
-        /**
-         * 用户名
-         */
-        private String username;
+    /**
+     * 响应时间
+     */
+    @TableField(value = "`time`")
+    private Integer time;
 
-        /**
-         * 用户操作
-         */
-        private String operation;
+    /**
+     * 请求方法
+     */
+    @TableField(value = "`method`")
+    private String method;
 
-        /**
-         * 响应时间
-         */
-        private Integer time;
+    /**
+     * 请求参数
+     */
+    @TableField(value = "params")
+    private String params;
 
-        /**
-         * 请求方法
-         */
-        private String method;
+    /**
+     * IP地址
+     */
+    @TableField(value = "ip")
+    private String ip;
 
-        /**
-         * 请求参数
-         */
-        private String params;
-
-        /**
-         * IP地址
-         */
-        private String ip;
-
-        /**
-         * 创建时间
-         */
-        private LocalDateTime createTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public Long getUserId() {
-            return userId;
-            }
-
-        public void setUserId(Long userId) {
-            this.userId = userId;
-            }
-
-    public String getUsername() {
-            return username;
-            }
-
-        public void setUsername(String username) {
-            this.username = username;
-            }
-
-    public String getOperation() {
-            return operation;
-            }
-
-        public void setOperation(String operation) {
-            this.operation = operation;
-            }
-
-    public Integer getTime() {
-            return time;
-            }
-
-        public void setTime(Integer time) {
-            this.time = time;
-            }
-
-    public String getMethod() {
-            return method;
-            }
-
-        public void setMethod(String method) {
-            this.method = method;
-            }
-
-    public String getParams() {
-            return params;
-            }
-
-        public void setParams(String params) {
-            this.params = params;
-            }
-
-    public String getIp() {
-            return ip;
-            }
-
-        public void setIp(String ip) {
-            this.ip = ip;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-    
-@Override
-public String toString() {
-        return "SysLog{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", username=" + username +
-                ", operation=" + operation +
-                ", time=" + time +
-                ", method=" + method +
-                ", params=" + params +
-                ", ip=" + ip +
-                ", createTime=" + createTime +
-        "}";
-        }
-        }
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
+}

@@ -1,93 +1,45 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 小说内容
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("book_content")
-public class BookContent implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "book_content")
+public class BookContent {
+    /**
+     * 主键
+     */
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 章节ID
+     */
+    @TableField(value = "chapter_id")
+    private Long chapterId;
 
-        /**
-         * 主键
-         */
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 小说章节内容
+     */
+    @TableField(value = "content")
+    private String content;
 
-        /**
-         * 章节ID
-         */
-        private Long chapterId;
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 小说章节内容
-         */
-        private String content;
-
-        private LocalDateTime createTime;
-
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public Long getChapterId() {
-            return chapterId;
-            }
-
-        public void setChapterId(Long chapterId) {
-            this.chapterId = chapterId;
-            }
-
-    public String getContent() {
-            return content;
-            }
-
-        public void setContent(String content) {
-            this.content = content;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "BookContent{" +
-                "id=" + id +
-                ", chapterId=" + chapterId +
-                ", content=" + content +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    @TableField(value = "update_time")
+    private Date updateTime;
+}

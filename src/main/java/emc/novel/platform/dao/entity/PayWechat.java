@@ -1,197 +1,93 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 微信支付
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("pay_wechat")
-public class PayWechat implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "pay_wechat")
+public class PayWechat {
+    /**
+     * 主键
+     */
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 商户订单号
+     */
+    @TableField(value = "out_trade_no")
+    private String outTradeNo;
 
-        /**
-         * 主键
-         */
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 微信支付订单号
+     */
+    @TableField(value = "transaction_id")
+    private String transactionId;
 
-        /**
-         * 商户订单号
-         */
-        private String outTradeNo;
+    /**
+     * 交易类型;JSAPI-公众号支付 NATIVE-扫码支付 APP-APP支付 MICROPAY-付款码支付 MWEB-H5支付 FACEPAY-刷脸支付
+     */
+    @TableField(value = "trade_type")
+    private String tradeType;
 
-        /**
-         * 微信支付订单号
-         */
-        private String transactionId;
+    /**
+     * 交易状态;SUCCESS-支付成功 REFUND-转入退款 NOTPAY-未支付 CLOSED-已关闭 REVOKED-已撤销（付款码支付） USERPAYING-用户支付中（付款码支付） PAYERROR-支付失败(其他原因，如银行返回失败)
+     */
+    @TableField(value = "trade_state")
+    private String tradeState;
 
-        /**
-         * 交易类型;JSAPI-公众号支付 NATIVE-扫码支付 APP-APP支付 MICROPAY-付款码支付 MWEB-H5支付 FACEPAY-刷脸支付
-         */
-        private String tradeType;
+    /**
+     * 交易状态描述
+     */
+    @TableField(value = "trade_state_desc")
+    private String tradeStateDesc;
 
-        /**
-         * 交易状态;SUCCESS-支付成功 REFUND-转入退款 NOTPAY-未支付 CLOSED-已关闭 REVOKED-已撤销（付款码支付） USERPAYING-用户支付中（付款码支付） PAYERROR-支付失败(其他原因，如银行返回失败)
-         */
-        private String tradeState;
+    /**
+     * 订单总金额;单位：分
+     */
+    @TableField(value = "amount")
+    private Integer amount;
 
-        /**
-         * 交易状态描述
-         */
-        private String tradeStateDesc;
+    /**
+     * 用户支付金额;单位：分
+     */
+    @TableField(value = "payer_total")
+    private Integer payerTotal;
 
-        /**
-         * 订单总金额;单位：分
-         */
-        private Integer amount;
+    /**
+     * 支付完成时间
+     */
+    @TableField(value = "success_time")
+    private Date successTime;
 
-        /**
-         * 用户支付金额;单位：分
-         */
-        private Integer payerTotal;
+    /**
+     * 支付者用户标识;用户在直连商户appid下的唯一标识
+     */
+    @TableField(value = "payer_openid")
+    private String payerOpenid;
 
-        /**
-         * 支付完成时间
-         */
-        private LocalDateTime successTime;
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 支付者用户标识;用户在直连商户appid下的唯一标识
-         */
-        private String payerOpenid;
-
-        /**
-         * 创建时间
-         */
-        private LocalDateTime createTime;
-
-        /**
-         * 更新时间
-         */
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public String getOutTradeNo() {
-            return outTradeNo;
-            }
-
-        public void setOutTradeNo(String outTradeNo) {
-            this.outTradeNo = outTradeNo;
-            }
-
-    public String getTransactionId() {
-            return transactionId;
-            }
-
-        public void setTransactionId(String transactionId) {
-            this.transactionId = transactionId;
-            }
-
-    public String getTradeType() {
-            return tradeType;
-            }
-
-        public void setTradeType(String tradeType) {
-            this.tradeType = tradeType;
-            }
-
-    public String getTradeState() {
-            return tradeState;
-            }
-
-        public void setTradeState(String tradeState) {
-            this.tradeState = tradeState;
-            }
-
-    public String getTradeStateDesc() {
-            return tradeStateDesc;
-            }
-
-        public void setTradeStateDesc(String tradeStateDesc) {
-            this.tradeStateDesc = tradeStateDesc;
-            }
-
-    public Integer getAmount() {
-            return amount;
-            }
-
-        public void setAmount(Integer amount) {
-            this.amount = amount;
-            }
-
-    public Integer getPayerTotal() {
-            return payerTotal;
-            }
-
-        public void setPayerTotal(Integer payerTotal) {
-            this.payerTotal = payerTotal;
-            }
-
-    public LocalDateTime getSuccessTime() {
-            return successTime;
-            }
-
-        public void setSuccessTime(LocalDateTime successTime) {
-            this.successTime = successTime;
-            }
-
-    public String getPayerOpenid() {
-            return payerOpenid;
-            }
-
-        public void setPayerOpenid(String payerOpenid) {
-            this.payerOpenid = payerOpenid;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "PayWechat{" +
-                "id=" + id +
-                ", outTradeNo=" + outTradeNo +
-                ", transactionId=" + transactionId +
-                ", tradeType=" + tradeType +
-                ", tradeState=" + tradeState +
-                ", tradeStateDesc=" + tradeStateDesc +
-                ", amount=" + amount +
-                ", payerTotal=" + payerTotal +
-                ", successTime=" + successTime +
-                ", payerOpenid=" + payerOpenid +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time")
+    private Date updateTime;
+}

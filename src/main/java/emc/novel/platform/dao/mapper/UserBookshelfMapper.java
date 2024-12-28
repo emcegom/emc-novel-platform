@@ -1,16 +1,9 @@
 package emc.novel.platform.dao.mapper;
 
-import emc.novel.platform.dao.entity.UserBookshelf;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import emc.novel.platform.dao.entity.UserBookshelf;
+import org.apache.ibatis.annotations.Mapper;
 
-/**
- * <p>
- * 用户书架 Mapper 接口
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
- */
+@Mapper
 public interface UserBookshelfMapper extends BaseMapper<UserBookshelf> {
-
-        }
+}

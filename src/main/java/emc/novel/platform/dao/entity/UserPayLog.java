@@ -1,194 +1,90 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 用户充值记录
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("user_pay_log")
-public class UserPayLog implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "user_pay_log")
+public class UserPayLog {
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 充值用户ID
+     */
+    @TableField(value = "user_id")
+    private Long userId;
 
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 充值方式;0-支付宝 1-微信
+     */
+    @TableField(value = "pay_channel")
+    private Byte payChannel;
 
-        /**
-         * 充值用户ID
-         */
-        private Long userId;
+    /**
+     * 商户订单号
+     */
+    @TableField(value = "out_trade_no")
+    private String outTradeNo;
 
-        /**
-         * 充值方式;0-支付宝 1-微信
-         */
-        private Byte payChannel;
+    /**
+     * 充值金额;单位：分
+     */
+    @TableField(value = "amount")
+    private Integer amount;
 
-        /**
-         * 商户订单号
-         */
-        private String outTradeNo;
+    /**
+     * 充值商品类型;0-屋币 1-包年VIP
+     */
+    @TableField(value = "product_type")
+    private Byte productType;
 
-        /**
-         * 充值金额;单位：分
-         */
-        private Integer amount;
+    /**
+     * 充值商品ID
+     */
+    @TableField(value = "product_id")
+    private Long productId;
 
-        /**
-         * 充值商品类型;0-屋币 1-包年VIP
-         */
-        private Byte productType;
+    /**
+     * 充值商品名;示例值：屋币
+     */
+    @TableField(value = "product_name")
+    private String productName;
 
-        /**
-         * 充值商品ID
-         */
-        private Long productId;
+    /**
+     * 充值商品值;示例值：255
+     */
+    @TableField(value = "product_value")
+    private Integer productValue;
 
-        /**
-         * 充值商品名;示例值：屋币
-         */
-        private String productName;
+    /**
+     * 充值时间
+     */
+    @TableField(value = "pay_time")
+    private Date payTime;
 
-        /**
-         * 充值商品值;示例值：255
-         */
-        private Integer productValue;
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 充值时间
-         */
-        private LocalDateTime payTime;
-
-        /**
-         * 创建时间
-         */
-        private LocalDateTime createTime;
-
-        /**
-         * 更新时间
-         */
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public Long getUserId() {
-            return userId;
-            }
-
-        public void setUserId(Long userId) {
-            this.userId = userId;
-            }
-
-    public Byte getPayChannel() {
-            return payChannel;
-            }
-
-        public void setPayChannel(Byte payChannel) {
-            this.payChannel = payChannel;
-            }
-
-    public String getOutTradeNo() {
-            return outTradeNo;
-            }
-
-        public void setOutTradeNo(String outTradeNo) {
-            this.outTradeNo = outTradeNo;
-            }
-
-    public Integer getAmount() {
-            return amount;
-            }
-
-        public void setAmount(Integer amount) {
-            this.amount = amount;
-            }
-
-    public Byte getProductType() {
-            return productType;
-            }
-
-        public void setProductType(Byte productType) {
-            this.productType = productType;
-            }
-
-    public Long getProductId() {
-            return productId;
-            }
-
-        public void setProductId(Long productId) {
-            this.productId = productId;
-            }
-
-    public String getProductName() {
-            return productName;
-            }
-
-        public void setProductName(String productName) {
-            this.productName = productName;
-            }
-
-    public Integer getProductValue() {
-            return productValue;
-            }
-
-        public void setProductValue(Integer productValue) {
-            this.productValue = productValue;
-            }
-
-    public LocalDateTime getPayTime() {
-            return payTime;
-            }
-
-        public void setPayTime(LocalDateTime payTime) {
-            this.payTime = payTime;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "UserPayLog{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", payChannel=" + payChannel +
-                ", outTradeNo=" + outTradeNo +
-                ", amount=" + amount +
-                ", productType=" + productType +
-                ", productId=" + productId +
-                ", productName=" + productName +
-                ", productValue=" + productValue +
-                ", payTime=" + payTime +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time")
+    private Date updateTime;
+}

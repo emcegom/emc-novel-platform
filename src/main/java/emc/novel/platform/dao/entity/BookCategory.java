@@ -1,110 +1,54 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 小说类别
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("book_category")
-public class BookCategory implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "book_category")
+public class BookCategory {
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 作品方向;0-男频 1-女频
+     */
+    @TableField(value = "work_direction")
+    private Byte workDirection;
 
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 类别名
+     */
+    @TableField(value = "`name`")
+    private String name;
 
-        /**
-         * 作品方向;0-男频 1-女频
-         */
-        private Byte workDirection;
+    /**
+     * 排序
+     */
+    @TableField(value = "sort")
+    private Byte sort;
 
-        /**
-         * 类别名
-         */
-        private String name;
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 排序
-         */
-        private Byte sort;
-
-        /**
-         * 创建时间
-         */
-        private LocalDateTime createTime;
-
-        /**
-         * 更新时间
-         */
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public Byte getWorkDirection() {
-            return workDirection;
-            }
-
-        public void setWorkDirection(Byte workDirection) {
-            this.workDirection = workDirection;
-            }
-
-    public String getName() {
-            return name;
-            }
-
-        public void setName(String name) {
-            this.name = name;
-            }
-
-    public Byte getSort() {
-            return sort;
-            }
-
-        public void setSort(Byte sort) {
-            this.sort = sort;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "BookCategory{" +
-                "id=" + id +
-                ", workDirection=" + workDirection +
-                ", name=" + name +
-                ", sort=" + sort +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time")
+    private Date updateTime;
+}

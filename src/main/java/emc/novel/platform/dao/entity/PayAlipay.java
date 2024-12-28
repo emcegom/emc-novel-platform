@@ -1,197 +1,93 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 支付宝支付
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("pay_alipay")
-public class PayAlipay implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "pay_alipay")
+public class PayAlipay {
+    /**
+     * 主键
+     */
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 商户订单号
+     */
+    @TableField(value = "out_trade_no")
+    private String outTradeNo;
 
-        /**
-         * 主键
-         */
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 支付宝交易号
+     */
+    @TableField(value = "trade_no")
+    private String tradeNo;
 
-        /**
-         * 商户订单号
-         */
-        private String outTradeNo;
+    /**
+     * 买家支付宝账号 ID
+     */
+    @TableField(value = "buyer_id")
+    private String buyerId;
 
-        /**
-         * 支付宝交易号
-         */
-        private String tradeNo;
+    /**
+     * 交易状态;TRADE_SUCCESS-交易成功
+     */
+    @TableField(value = "trade_status")
+    private String tradeStatus;
 
-        /**
-         * 买家支付宝账号 ID
-         */
-        private String buyerId;
+    /**
+     * 订单金额;单位：分
+     */
+    @TableField(value = "total_amount")
+    private Integer totalAmount;
 
-        /**
-         * 交易状态;TRADE_SUCCESS-交易成功
-         */
-        private String tradeStatus;
+    /**
+     * 实收金额;单位：分
+     */
+    @TableField(value = "receipt_amount")
+    private Integer receiptAmount;
 
-        /**
-         * 订单金额;单位：分
-         */
-        private Integer totalAmount;
+    /**
+     * 开票金额
+     */
+    @TableField(value = "invoice_amount")
+    private Integer invoiceAmount;
 
-        /**
-         * 实收金额;单位：分
-         */
-        private Integer receiptAmount;
+    /**
+     * 交易创建时间
+     */
+    @TableField(value = "gmt_create")
+    private Date gmtCreate;
 
-        /**
-         * 开票金额
-         */
-        private Integer invoiceAmount;
+    /**
+     * 交易付款时间
+     */
+    @TableField(value = "gmt_payment")
+    private Date gmtPayment;
 
-        /**
-         * 交易创建时间
-         */
-        private LocalDateTime gmtCreate;
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 交易付款时间
-         */
-        private LocalDateTime gmtPayment;
-
-        /**
-         * 创建时间
-         */
-        private LocalDateTime createTime;
-
-        /**
-         * 更新时间
-         */
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public String getOutTradeNo() {
-            return outTradeNo;
-            }
-
-        public void setOutTradeNo(String outTradeNo) {
-            this.outTradeNo = outTradeNo;
-            }
-
-    public String getTradeNo() {
-            return tradeNo;
-            }
-
-        public void setTradeNo(String tradeNo) {
-            this.tradeNo = tradeNo;
-            }
-
-    public String getBuyerId() {
-            return buyerId;
-            }
-
-        public void setBuyerId(String buyerId) {
-            this.buyerId = buyerId;
-            }
-
-    public String getTradeStatus() {
-            return tradeStatus;
-            }
-
-        public void setTradeStatus(String tradeStatus) {
-            this.tradeStatus = tradeStatus;
-            }
-
-    public Integer getTotalAmount() {
-            return totalAmount;
-            }
-
-        public void setTotalAmount(Integer totalAmount) {
-            this.totalAmount = totalAmount;
-            }
-
-    public Integer getReceiptAmount() {
-            return receiptAmount;
-            }
-
-        public void setReceiptAmount(Integer receiptAmount) {
-            this.receiptAmount = receiptAmount;
-            }
-
-    public Integer getInvoiceAmount() {
-            return invoiceAmount;
-            }
-
-        public void setInvoiceAmount(Integer invoiceAmount) {
-            this.invoiceAmount = invoiceAmount;
-            }
-
-    public LocalDateTime getGmtCreate() {
-            return gmtCreate;
-            }
-
-        public void setGmtCreate(LocalDateTime gmtCreate) {
-            this.gmtCreate = gmtCreate;
-            }
-
-    public LocalDateTime getGmtPayment() {
-            return gmtPayment;
-            }
-
-        public void setGmtPayment(LocalDateTime gmtPayment) {
-            this.gmtPayment = gmtPayment;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "PayAlipay{" +
-                "id=" + id +
-                ", outTradeNo=" + outTradeNo +
-                ", tradeNo=" + tradeNo +
-                ", buyerId=" + buyerId +
-                ", tradeStatus=" + tradeStatus +
-                ", totalAmount=" + totalAmount +
-                ", receiptAmount=" + receiptAmount +
-                ", invoiceAmount=" + invoiceAmount +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtPayment=" + gmtPayment +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time")
+    private Date updateTime;
+}

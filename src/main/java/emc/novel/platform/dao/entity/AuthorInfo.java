@@ -1,183 +1,87 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 作者信息
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("author_info")
-public class AuthorInfo implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "author_info")
+public class AuthorInfo {
+    /**
+     * 主键
+     */
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 用户ID
+     */
+    @TableField(value = "user_id")
+    private Long userId;
 
-        /**
-         * 主键
-         */
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 邀请码
+     */
+    @TableField(value = "invite_code")
+    private String inviteCode;
 
-        /**
-         * 用户ID
-         */
-        private Long userId;
+    /**
+     * 笔名
+     */
+    @TableField(value = "pen_name")
+    private String penName;
 
-        /**
-         * 邀请码
-         */
-        private String inviteCode;
+    /**
+     * 手机号码
+     */
+    @TableField(value = "tel_phone")
+    private String telPhone;
 
-        /**
-         * 笔名
-         */
-        private String penName;
+    /**
+     * QQ或微信账号
+     */
+    @TableField(value = "chat_account")
+    private String chatAccount;
 
-        /**
-         * 手机号码
-         */
-        private String telPhone;
+    /**
+     * 电子邮箱
+     */
+    @TableField(value = "email")
+    private String email;
 
-        /**
-         * QQ或微信账号
-         */
-        private String chatAccount;
+    /**
+     * 作品方向;0-男频 1-女频
+     */
+    @TableField(value = "work_direction")
+    private Byte workDirection;
 
-        /**
-         * 电子邮箱
-         */
-        private String email;
+    /**
+     * 0：正常;1-封禁
+     */
+    @TableField(value = "`status`")
+    private Byte status;
 
-        /**
-         * 作品方向;0-男频 1-女频
-         */
-        private Byte workDirection;
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 0：正常;1-封禁
-         */
-        private Byte status;
-
-        /**
-         * 创建时间
-         */
-        private LocalDateTime createTime;
-
-        /**
-         * 更新时间
-         */
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public Long getUserId() {
-            return userId;
-            }
-
-        public void setUserId(Long userId) {
-            this.userId = userId;
-            }
-
-    public String getInviteCode() {
-            return inviteCode;
-            }
-
-        public void setInviteCode(String inviteCode) {
-            this.inviteCode = inviteCode;
-            }
-
-    public String getPenName() {
-            return penName;
-            }
-
-        public void setPenName(String penName) {
-            this.penName = penName;
-            }
-
-    public String getTelPhone() {
-            return telPhone;
-            }
-
-        public void setTelPhone(String telPhone) {
-            this.telPhone = telPhone;
-            }
-
-    public String getChatAccount() {
-            return chatAccount;
-            }
-
-        public void setChatAccount(String chatAccount) {
-            this.chatAccount = chatAccount;
-            }
-
-    public String getEmail() {
-            return email;
-            }
-
-        public void setEmail(String email) {
-            this.email = email;
-            }
-
-    public Byte getWorkDirection() {
-            return workDirection;
-            }
-
-        public void setWorkDirection(Byte workDirection) {
-            this.workDirection = workDirection;
-            }
-
-    public Byte getStatus() {
-            return status;
-            }
-
-        public void setStatus(Byte status) {
-            this.status = status;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "AuthorInfo{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", inviteCode=" + inviteCode +
-                ", penName=" + penName +
-                ", telPhone=" + telPhone +
-                ", chatAccount=" + chatAccount +
-                ", email=" + email +
-                ", workDirection=" + workDirection +
-                ", status=" + status +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time")
+    private Date updateTime;
+}

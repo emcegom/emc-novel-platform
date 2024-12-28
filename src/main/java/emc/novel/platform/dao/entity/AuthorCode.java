@@ -1,113 +1,57 @@
 package emc.novel.platform.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * <p>
  * 作家邀请码
- * </p>
- *
- * @author ${author}
- * @date 2024/12/28
  */
-@TableName("author_code")
-public class AuthorCode implements Serializable {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "author_code")
+public class AuthorCode {
+    /**
+     * 主键
+     */
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
-private static final long serialVersionUID = 1L;
+    /**
+     * 邀请码
+     */
+    @TableField(value = "invite_code")
+    private String inviteCode;
 
-        /**
-         * 主键
-         */
-                @TableId(value = "id", type = IdType.AUTO)
-                private Long id;
+    /**
+     * 有效时间
+     */
+    @TableField(value = "validity_time")
+    private Date validityTime;
 
-        /**
-         * 邀请码
-         */
-        private String inviteCode;
+    /**
+     * 是否使用过;0-未使用 1-使用过
+     */
+    @TableField(value = "is_used")
+    private Byte isUsed;
 
-        /**
-         * 有效时间
-         */
-        private LocalDateTime validityTime;
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
 
-        /**
-         * 是否使用过;0-未使用 1-使用过
-         */
-        private Byte isUsed;
-
-        /**
-         * 创建时间
-         */
-        private LocalDateTime createTime;
-
-        /**
-         * 更新时间
-         */
-        private LocalDateTime updateTime;
-
-
-    public Long getId() {
-            return id;
-            }
-
-        public void setId(Long id) {
-            this.id = id;
-            }
-
-    public String getInviteCode() {
-            return inviteCode;
-            }
-
-        public void setInviteCode(String inviteCode) {
-            this.inviteCode = inviteCode;
-            }
-
-    public LocalDateTime getValidityTime() {
-            return validityTime;
-            }
-
-        public void setValidityTime(LocalDateTime validityTime) {
-            this.validityTime = validityTime;
-            }
-
-    public Byte getIsUsed() {
-            return isUsed;
-            }
-
-        public void setIsUsed(Byte isUsed) {
-            this.isUsed = isUsed;
-            }
-
-    public LocalDateTime getCreateTime() {
-            return createTime;
-            }
-
-        public void setCreateTime(LocalDateTime createTime) {
-            this.createTime = createTime;
-            }
-
-    public LocalDateTime getUpdateTime() {
-            return updateTime;
-            }
-
-        public void setUpdateTime(LocalDateTime updateTime) {
-            this.updateTime = updateTime;
-            }
-    
-@Override
-public String toString() {
-        return "AuthorCode{" +
-                "id=" + id +
-                ", inviteCode=" + inviteCode +
-                ", validityTime=" + validityTime +
-                ", isUsed=" + isUsed +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-        "}";
-        }
-        }
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time")
+    private Date updateTime;
+}
