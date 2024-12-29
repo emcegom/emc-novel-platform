@@ -1,0 +1,50 @@
+spring:
+  application:
+    name:emc-novel-platform
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3308/emc_novel_platform
+    username: root
+    password: 123456
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 123456
+  elasticsearch:
+    uris: http://127.0.0.1:9200
+  rabbitmq:
+    username: guest
+    password: guest
+    host: 127.0.0.1
+    port: 5672
+    virtual-host: novel
+    template:
+      retry:
+        # 开启重试
+        enabled: true
+        # 最大重试次数
+        max-attempts: 3
+        # 第一次和第二次重试之间的持续时间
+        initial-interval: "3s"
+novel:
+  cors:
+    allow-origins:
+      -http://127.0.0.1:8030
+      -http://127.0.0.1:8031
+
+xxl:
+  job:
+    admin:
+      addresses: http://127.0.0.1:7379/xxl-job-admin
+    executor:
+      appname: xxl-job-executor-novel
+      logpath: logs/xxl-job/jobhandler
+    accessToken: 123456
+
+server:
+  port: 8888
+springdoc:
+  api-docs:
+    enabled: false
